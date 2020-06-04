@@ -65,7 +65,7 @@ const options = (account?: string): IAsksTypes[] => {
 
 const command: GluegunCommand = {
     name: 'create',
-    description: "Create a new data query account: masterdata create [accoutName]",
+    description: "Create a new account: masterdata create [teste]",
     run: async toolbox => {
         const { print, prompt, parameters: { array } } = toolbox;
 
