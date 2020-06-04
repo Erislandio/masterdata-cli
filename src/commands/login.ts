@@ -1,11 +1,11 @@
 import { ILoginResponse } from './../types';
-import { GluegunCommand } from 'gluegun'
+import { GluegunCommand, print } from 'gluegun'
 import api from '../client/api'
 import { error, success } from 'log-symbols'
 import { isEmail } from '../utils/utils'
 
 const options = (email?: string) => {
-    let messagePassword = email ? `Password for email: ${email}` : 'Password: '
+    let messagePassword = email ? `Password for email: ${print.colors.bold.green(email)}` : 'Password: '
     return [
         {
             message: "Email: ",
@@ -20,6 +20,11 @@ const options = (email?: string) => {
             name: "password"
         }
     ]
+}
+
+interface IAsksReturn {
+    email: string | undefined;
+    password: string;
 }
 
 const command: GluegunCommand = {
@@ -39,16 +44,18 @@ const command: GluegunCommand = {
 
         const asks = array.length ? options(array[0])[1] : options('');
 
-        prompt.ask(asks).then(async (res) => {
+        prompt.ask<IAsksReturn>(asks).then(async (res) => {
 
-            if (!isEmail(res.email.trim())) {
-                return print.error(`${res.email}: It is not a valid email`)
+            if (res.email) {
+                if (!isEmail(res?.email?.trim())) {
+                    return print.error(`${res.email}: It is not a valid email`)
+                }
             }
 
             const spinner = toolbox.print.spin('Wait...');
 
             api.post<ILoginResponse>('/v1/login', {
-                email: array.length ? array[0] : res.email.trim(),
+                email: array.length ? array[0].trim() : res?.email?.trim(),
                 password: res.password.trim()
             }).then(async ({ data }) => {
 
@@ -72,14 +79,14 @@ const command: GluegunCommand = {
 
             }).catch((error) => {
                 spinner.warn('End request...');
-                print.error(`An error occurred while trying to login, please try again.: ${error.message}`)
+                print.error(`An error occurred while trying to login, please try again: ${error.message}`)
 
             }).finally(() => {
                 spinner.succeed('End request...');
             })
 
         }).catch((error: any) => {
-            print.error(`An error occurred while trying to login, please try again.: ${error.message}`)
+            print.error(`An error occurred while trying to login, please try again: ${error.message}`)
         })
 
     }
