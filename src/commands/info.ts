@@ -8,21 +8,24 @@ import { formatedDate, isEmpty } from '../utils/utils';
 const command: GluegunCommand = {
     name: 'info',
     alias: 'i',
+    description: "displays the information of the logged in user",
     run: async toolbox => {
         const { print } = toolbox
 
+        const spinner = toolbox.print.spin('Checking user...');
 
         if (!id) {
+            spinner.stop()
             print.newline();
             return print.error(`${warning} You need to be logged in, try the command: masterdata login`)
         }
 
-        const spinner = toolbox.print.spin('fetching the data, wait...');
+        spinner.start('fetching the data, wait...');
 
         api.get<InfoResponse>(`/v1/user?id=${id}`, {
             id
         }).then(({ data }) => {
-
+            spinner.succeed();
             print.newline();
             print.divider()
             print.newline();
@@ -30,7 +33,7 @@ const command: GluegunCommand = {
             print.success(`${info} account created on: ${print.colors.bold.magenta(formatedDate(data.createdAt))}`);
 
             if (!isEmpty(data.account)) {
-                print.success(`${info} You are using the account: ${print.colors.bold.magenta(data.account.name)}`)
+                print.success(`${info} You are using the account: ${print.colors.bold.magenta(data.account.name.toUpperCase())}`)
                 print.newline();
             }
 
@@ -38,9 +41,9 @@ const command: GluegunCommand = {
                 print.success(`${info} registered accounts: `)
                 print.newline()
                 console.table(data.accounts.map((account) => ({
+                    name: account.name,
                     id: account._id,
                     appKey: account.appKey,
-                    name: account.name
                 })));
                 print.divider()
             } else {
@@ -52,7 +55,7 @@ const command: GluegunCommand = {
             print.error(`An error occurred while trying to login, please try again.: ${error.message}`)
 
         }).finally(() => {
-            spinner.succeed('End request...');
+            spinner.stop();
         })
     }
 }

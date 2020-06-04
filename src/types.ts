@@ -33,4 +33,6 @@ export interface InfoResponse {
     _id: string;
     email: string;
     createdAt: string;
+    error: boolean;
+    message: string;
 }
