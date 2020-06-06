@@ -6,3 +6,6 @@ coverage
 dist
 build
 .vscode
+auth
+./src/auth
+variables.json
