@@ -1,4 +1,4 @@
-# V2 Masterdata CLI V2 ![CLI](https://cdn4.iconfinder.com/data/icons/small-n-flat/24/terminal-64.png)
+# Masterdata CLI V2 ![CLI](https://cdn4.iconfinder.com/data/icons/small-n-flat/24/terminal-64.png)
 
 
 ## Description:
