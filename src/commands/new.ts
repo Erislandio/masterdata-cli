@@ -16,6 +16,7 @@ const command: GluegunCommand = {
             }
             print.success(`${data}`)
         });
+        
         print.newline()
         print.divider()
         print.info(`${success} Welcome to your CLI`);
