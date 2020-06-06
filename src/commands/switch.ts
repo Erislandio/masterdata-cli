@@ -1,20 +1,9 @@
+import { IChoices, ISelectAccount } from './../types';
 import { GluegunCommand, print } from 'gluegun'
 import { warning, info, error, success } from "log-symbols";
 import { id } from '../auth/variables.json'
 import { InfoResponse } from '../types';
 import api from '../client/api';
-
-interface ISelectAccount {
-    account: string;
-}
-
-interface IChoices {
-    name: string;
-    disabled: boolean;
-    value: string;
-    hint: string;
-    message: string;
-}
 
 async function switchAccount(account: string): Promise<InfoResponse> {
 
