@@ -6,8 +6,8 @@ import api from '../client/api'
 import { formatedDate, isEmpty } from '../utils/utils';
 
 const command: GluegunCommand = {
-    name: 'info',
-    alias: 'i',
+    name: 'whoami',
+    alias: 'w',
     description: "displays the information of the logged in user",
     run: async toolbox => {
         const { print } = toolbox
@@ -25,6 +25,18 @@ const command: GluegunCommand = {
         api.get<InfoResponse>(`/v1/user?id=${id}`, {
             id
         }).then(({ data }) => {
+
+            if (data.error) {
+                spinner.stop();
+                print.newline();
+
+                if (data.error === "Token inválido") {
+                    return print.warning(`${warning} Authentication error, please use the masterdata login command`)
+                }
+
+                return print.warning(`${warning} Unable to access memento resource, check if you are logged in`)
+            }
+
             spinner.succeed();
             print.newline();
             print.divider()
@@ -37,12 +49,12 @@ const command: GluegunCommand = {
                 print.newline();
             }
 
+
             if (data.accounts.length) {
                 print.success(`${info} registered accounts: `)
                 print.newline()
                 console.table(data.accounts.map((account) => ({
                     name: account.name,
-                    id: account._id,
                     appKey: account.appKey,
                 })));
                 print.divider()

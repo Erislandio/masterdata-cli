@@ -31,7 +31,6 @@ const command: GluegunCommand = {
                 print.newline();
                 console.table(data.accounts.map((account) => ({
                     name: account.name,
-                    id: account._id,
                     appKey: account.appKey,
                 })));
             } else {

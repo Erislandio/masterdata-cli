@@ -1,6 +1,9 @@
-# masterdata V2 Masterdata CLI ![CLI](https://cdn4.iconfinder.com/data/icons/small-n-flat/24/terminal-64.png)
+# V2 Masterdata CLI V2 ![CLI](https://cdn4.iconfinder.com/data/icons/small-n-flat/24/terminal-64.png)
 
-![enter image description here](https://image.flaticon.com/icons/svg/2534/2534297.svg)
+
+## Description:
+
+Welcome to the masterdata cli, this CLI is only for querying data in the VTEX masterdata, it is not possible to change data and information.
 
 ## Install
 
@@ -8,46 +11,23 @@
 yarn global add @erislandio/masterdata or npm install @erislandio/masterdata -g
 ```
 
-## Usage: masterdata [options]
+## Usage: masterdata command [options]
 
-  
 
 ### Options:
 
-  
 
-```sh
--V, --version output the version number
+```SH
 
--lg, --login Login on application
+ version (v)   Output the version number                                                            
+  create        Create a new account: masterdata create {accountName}                                      
+  list (ls)     List all registered accounts: masterdata ls                                          
+  login (l)     Sign in to an account, example: masterdata login teste@gmail.com or masterdata login 
+  switch (s)    Switch account: masterdata switch [teste]                                            
+  whoami (w)    displays the information of the logged in user                                       
+  help (h)      shows this list of options
 
--u, --use Use an account
-
--i, --info Show account info
-
--a, --add Add an account
-
---logout Logout
-
--ls, --list Lists created accounts
-
--rm, --remove Remove an account
-
--dbs, --databases List databases (acronym)
-
---all <acronym> Get all data from acronym
-
--q, --query <query> Get all data from acronym - ex: select firstName from CL
-
--d, --desc <acronym> List info from table ex: --desc 'CL'
-
--n, --new Create new user
-
---banner Show banner
-
--h, --help display help  for  command
 ```
-
   
   
 
@@ -56,60 +36,29 @@ yarn global add @erislandio/masterdata or npm install @erislandio/masterdata -g
   
 * if you are already registered
 
-  
 
 ```sh
-masterdata --login
+masterdata login [email]
 ```
 
 * if you don't have one, just create
 
-  
-
 ```sh
-masterdata --new
+masterdata new [email]
 ```
-
-  
 
 * Adding an account to make queries. You will need `appKey` and `appToken` (rest assured it will not be public)
 
-  
-
 ```sh
-masterdata --add
+masterdata create [accountName]
 ```
 
-  
+## prints
 
-### Query example:
+- login
 
-* all databases
+![cli](https://res.cloudinary.com/acct/image/upload/v1591411741/msaterdata%20cli/login_zb1sab.png)
 
-```SH
-    masterdata --dbs
-```
+- whoami
 
-* select
-
-```sh
-    masterdata -q "select * from CL where email='user@email.com'"
-```
-
-* select filter
-
-```sh
-    masterdata -q "select firstName, lastName from CL where email='user@email.com'"
-```
-
-* desc
-
-```sh
-    masterdata --desc CL
-```
-
-### Exit
-
-```sh
-    masterdata --logout
-```
+![cli](https://res.cloudinary.com/acct/image/upload/v1591411741/msaterdata%20cli/whoami_bq7lrz.png)
