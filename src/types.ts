@@ -36,3 +36,16 @@ export interface InfoResponse {
     error: boolean | string;
     message: string;
 }
+
+
+export interface ISelectAccount {
+    account: string;
+}
+
+export interface IChoices {
+    name: string;
+    disabled: boolean;
+    value: string;
+    hint: string;
+    message: string;
+}

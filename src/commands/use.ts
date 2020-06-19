@@ -19,9 +19,9 @@ async function switchAccount(account: string): Promise<InfoResponse> {
 }
 
 const command: GluegunCommand = {
-    name: 'switch',
-    alias: 's',
-    description: "Switch account: masterdata switch [teste]",
+    name: 'use',
+    alias: 'u',
+    description: "Use account: masterdata use [accoutName]",
     run: async toolbox => {
 
         const { print, prompt, parameters: { array } } = toolbox;
@@ -31,6 +31,16 @@ const command: GluegunCommand = {
             spinner.stop();
             print.newline();
             return print.error(`${warning} You need to be logged in, try the command: masterdata login`)
+        }
+
+        spinner.start(`${info} Searching for registered accounts, wait`);
+
+        const { data: { accounts, account } } = await api.get<InfoResponse>(`/v1/user?id=${id}`, { id });
+
+        if (!accounts.length) {
+            spinner.stop();
+            print.newline();
+            return print.warning(`${warning} You do not have an account yet, try the command: masterdata create [account]`)
         }
 
         if (array.length) {
@@ -56,22 +66,16 @@ const command: GluegunCommand = {
 
         try {
 
-            spinner.start(`${info} Searching for registered accounts, wait`);
+            console.log(account)
 
-            const { data: { accounts, account } } = await api.get<InfoResponse>(`/v1/user?id=${id}`, { id });
-
-            if (!accounts.length) {
-                spinner.stop();
-                print.newline();
-                return print.warning(`${warning} You do not have an account yet, try the command: masterdata create [account]`)
-            }
+            const current = account !== undefined ? account.name : ''
 
             const choices: IChoices[] = accounts.map(({ name }) => ({
                 name,
-                disabled: name === account.name,
+                disabled: name === current,
                 message: name,
                 value: name,
-                hint: name === account.name ? `in use ${success}` : ''
+                hint: name === current ? `in use ${success}` : ''
             }));
 
             spinner.stop();
