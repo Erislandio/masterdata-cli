@@ -146,9 +146,6 @@ const command: GluegunCommand = {
               `${error} We were unable to execute the create command at this time, please try again.`
             )
           })
-          .finally(() => {
-            spinner.stop()
-          })
       })
       .catch(() => {
         print.newline()
