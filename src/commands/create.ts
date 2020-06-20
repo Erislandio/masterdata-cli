@@ -110,11 +110,10 @@ const command: GluegunCommand = {
 
         spinner.start(`${success} Creating ${account.name} account, wait...`)
 
-        api
-          .post<ICreateAccountResponse>('/v1/add', {
-            account,
-            id
-          })
+        api.post<ICreateAccountResponse>('/v1/add', {
+          account,
+          id
+        })
           .then(({ data }) => {
             spinner.stop()
             if (data.error) {
@@ -140,7 +139,7 @@ const command: GluegunCommand = {
               print.divider()
             }
           })
-          .catch(err => {
+          .catch(() => {
             print.newline()
             return print.error(
               `${error} We were unable to execute the create command at this time, please try again.`

@@ -1,8 +1,7 @@
 import { IChoices, ISelectAccount } from './../types'
-import { info, success, error } from 'log-symbols'
+import { info, success, error, warning } from 'log-symbols'
 import { GluegunCommand } from 'gluegun'
 import { id } from '../auth/variables.json'
-import { warning } from 'log-symbols'
 import { InfoResponse } from '../types'
 import api from '../client/api'
 
