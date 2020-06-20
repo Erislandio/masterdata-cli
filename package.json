@@ -4,7 +4,7 @@
   "description": "masterdata CLI",
   "private": false,
   "author": {
-    "name": "Erislandio soares",
+    "name": "erislandio",
     "email": "erislandiosoares21@gmail.com"
   },
   "types": "build/types/types.d.ts",
