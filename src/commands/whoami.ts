@@ -24,7 +24,8 @@ const command: GluegunCommand = {
 
     spinner.start('fetching the data, wait...')
 
-    api.get<InfoResponse>(`/v1/user?id=${id}`, {
+    api
+      .get<InfoResponse>(`/v1/user?id=${id}`, {
         id
       })
       .then(({ data }) => {

@@ -93,7 +93,8 @@ const command: GluegunCommand = {
       print.newline()
       print.divider()
 
-      prompt.ask<ISelectAccount>([
+      prompt
+        .ask<ISelectAccount>([
           {
             type: 'select',
             separator: true,

@@ -110,10 +110,11 @@ const command: GluegunCommand = {
 
         spinner.start(`${success} Creating ${account.name} account, wait...`)
 
-        api.post<ICreateAccountResponse>('/v1/add', {
-          account,
-          id
-        })
+        api
+          .post<ICreateAccountResponse>('/v1/add', {
+            account,
+            id
+          })
           .then(({ data }) => {
             spinner.stop()
             if (data.error) {
