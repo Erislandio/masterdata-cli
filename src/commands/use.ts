@@ -66,8 +66,6 @@ const command: GluegunCommand = {
 
         try {
 
-            console.log(account)
-
             const current = account !== undefined ? account.name : ''
 
             const choices: IChoices[] = accounts.map(({ name }) => ({

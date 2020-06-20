@@ -40,6 +40,7 @@ export interface InfoResponse {
 
 export interface ISelectAccount {
     account: string;
+    _id: string;
 }
 
 export interface IChoices {
