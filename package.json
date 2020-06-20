@@ -2,7 +2,7 @@
   "name": "@erislandio/masterdata-cli",
   "version": "0.0.2",
   "description": "masterdata CLI",
-  "private": true,
+  "private": false,
   "author": {
     "name": "Erislandio soares",
     "email": "erislandiosoares21@gmail.com"
