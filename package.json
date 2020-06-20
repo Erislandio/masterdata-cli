@@ -2,7 +2,6 @@
   "name": "@erislandio/masterdata-cli",
   "version": "0.0.2",
   "description": "masterdata CLI",
-  "private": false,
   "author": {
     "name": "erislandio",
     "email": "erislandiosoares21@gmail.com"
@@ -33,7 +32,6 @@
     "docs",
     "bin"
   ],
-  "license": "MIT",
   "dependencies": {
     "@types/figlet": "^1.2.0",
     "@types/log-symbols": "^3.0.0",
