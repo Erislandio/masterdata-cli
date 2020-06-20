@@ -2,9 +2,10 @@
   "name": "@erislandio/masterdata-cli",
   "version": "0.0.2",
   "description": "masterdata CLI",
+  "private": false,
   "author": {
     "name": "erislandio",
-    "email": "erislandiosoares21@gmail.com"
+    "email": "erislandiosoares@gmail.com"
   },
   "types": "build/types/types.d.ts",
   "bin": {
