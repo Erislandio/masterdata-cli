@@ -5,6 +5,7 @@
     "lib": [
       "es2015",
       "scripthost",
+      "es2015.promise",
       "es2015.generator",
       "es2015.iterable",
       "dom"
@@ -15,7 +16,6 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": false,
-    "no-floating-promises": false,
     "inlineSourceMap": true,
     "outDir": "build",
     "strict": false,
