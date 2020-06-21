@@ -2,10 +2,10 @@
   "name": "@erislandio/masterdata-cli",
   "version": "0.0.1",
   "description": "masterdata CLI",
-  "private": true,
+  "private": false,
   "author": {
-    "name": "Erislandio soares",
-    "email": "erislandiosoares21@gmail.com"
+    "name": "erislandio",
+    "email": "erislandiosoares@gmail.com"
   },
   "types": "build/types/types.d.ts",
   "bin": {
@@ -17,7 +17,7 @@
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p .",
     "copy-templates": "if [ -e ./src/templates ]; then cp -a ./src/templates ./build/; fi",
-    "build": "yarn format && yarn lint && yarn clean-build && yarn compile && yarn copy-templates",
+    "build": "yarn compile && yarn copy-templates",
     "prepublishOnly": "yarn build",
     "test": "jest",
     "watch": "jest --watch",
@@ -33,7 +33,6 @@
     "docs",
     "bin"
   ],
-  "license": "MIT",
   "dependencies": {
     "@types/figlet": "^1.2.0",
     "@types/log-symbols": "^3.0.0",
