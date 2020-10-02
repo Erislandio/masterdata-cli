@@ -2,7 +2,7 @@ import { http } from 'gluegun'
 import { token } from '../auth/variables.json'
 
 const api = http.create({
-  baseURL: 'https://plutom.herokuapp.com',
+  baseURL: 'https://masterdata-cli.herokuapp.com/',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
